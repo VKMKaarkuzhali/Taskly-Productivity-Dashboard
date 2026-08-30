@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taskly | Your Productivity Space</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         OPENING SCENE
+    ====================================================== -->
+
+    <div id="introScreen" class="intro-screen">
+
+        <div class="intro-orb orb-one"></div>
+        <div class="intro-orb orb-two"></div>
+        <div class="intro-orb orb-three"></div>
+
+        <div class="intro-ring ring-one"></div>
+        <div class="intro-ring ring-two"></div>
+
+        <div class="intro-content">
+
+            <div class="intro-logo">
+                ✦
+            </div>
+
+            <h1>Taskly</h1>
+
+            <p id="introQuote" class="intro-quote">
+                “Small steps still move you forward.”
+            </p>
+
+            <p class="intro-subtitle">
+                Your little space to plan, focus & grow.
+            </p>
+
+            <button id="enterTaskly" class="enter-btn">
+                Let's Begin
+                <span>→</span>
+            </button>
+
+        </div>
+
+        <div class="intro-bottom">
+            Take it one task at a time ✨
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN APP
+    ====================================================== -->
+
+    <div id="app" class="app">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">✦</div>
+                <span>Taskly</span>
+            </div>
+
+            <nav>
+
+                <p class="menu-title">MENU</p>
+
+                <button class="nav-item active" data-page="dashboard">
+                    <span>⌂</span>
+                    Dashboard
+                </button>
+
+                <button class="nav-item" data-page="tasks">
+                    <span>✓</span>
+                    My Tasks
+                </button>
+
+                <button class="nav-item" data-page="important">
+                    <span>★</span>
+                    Important
+                </button>
+
+                <button class="nav-item" data-page="analytics">
+                    <span>◔</span>
+                    Analytics
+                </button>
+
+                <button class="nav-item" data-page="settings">
+                    <span>⚙</span>
+                    Settings
+                </button>
+
+            </nav>
+
+
+            <!-- PROFILE -->
+
+            <div class="profile-card" id="profileCard">
+
+                <div class="profile-avatar" id="profileAvatar">
+                    👤
+                </div>
+
+                <div class="profile-info">
+                    <strong id="profileName">
+                        Your Profile
+                    </strong>
+
+                    <small id="profileType">
+                        Productivity User
+                    </small>
+                </div>
+
+                <button
+                    class="profile-more"
+                    id="profileMore"
+                    title="Profile menu">
+                    ⋮
+                </button>
+
+            </div>
+
+
+            <!-- PROFILE POPUP -->
+
+            <div id="profileMenu" class="profile-menu">
+
+                <button id="profileSettingsBtn">
+                    👤 Edit Profile
+                </button>
+
+                <button id="addProfileBtn">
+                    ＋ Add Profile
+                </button>
+
+                <button id="logoutBtn" class="logout-btn">
+                    ↪ Logout
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="main">
+
+            <!-- TOP BAR -->
+
+            <header class="topbar">
+
+                <div class="mobile-logo">
+                    ✦ Taskly
+                </div>
+
+                <div class="top-actions">
+
+                    <!-- Notification -->
+
+                    <div class="notification-wrapper">
+
+                        <button
+                            id="notificationBtn"
+                            class="icon-btn"
+                            title="Notifications">
+
+                            🔔
+
+                            <span
+                                id="notificationDot"
+                                class="notification-dot">
+                            </span>
+
+                        </button>
+
+                        <div
+                            id="notificationPanel"
+                            class="notification-panel">
+
+                            <div class="notification-header">
+                                <strong>Notifications</strong>
+
+                                <button id="markNotificationsRead">
+                                    Mark read
+                                </button>
+                            </div>
+
+                            <div id="notificationList">
+
+                                <div class="notification-empty">
+                                    You're all caught up ✨
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Theme -->
+
+                    <button
+                        id="themeToggle"
+                        class="icon-btn"
+                        title="Change theme">
+                        🌙
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 DASHBOARD PAGE
+            ================================================== -->
+
+            <section
+                id="dashboardPage"
+                class="page active-page">
+
+                <!-- WELCOME -->
+
+                <section class="welcome-section">
+
+                    <div>
+
+                        <p class="small-label">
+                            YOUR PRODUCTIVITY SPACE ✨
+                        </p>
+
+                        <h1 id="welcomeTitle">
+                            Good to see you! 👋
+                        </h1>
+
+                        <p>
+                            Let's make today productive.
+                            One task at a time.
+                        </p>
+
+                    </div>
+
+                    <div class="welcome-thought">
+
+                        <span>✦</span>
+
+                        <p id="dashboardQuote">
+                            You don't need to do everything.
+                            Just start with one thing.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- STATS -->
+
+                <section class="stats">
+
+                    <div class="stat-card purple">
+
+                        <div class="stat-top">
+                            <span>Total Tasks</span>
+
+                            <div class="stat-icon">
+                                📋
+                            </div>
+                        </div>
+
+                        <h2 id="totalTasks">0</h2>
+
+                        <p>
+                            Everything on your list
+                        </p>
+
+                    </div>
+
+
+                    <div class="stat-card green">
+
+                        <div class="stat-top">
+                            <span>Completed</span>
+
+                            <div class="stat-icon">
+                                ✓
+                            </div>
+                        </div>
+
+                        <h2 id="completedTasks">0</h2>
+
+                        <p>
+                            Look how far you've come
+                        </p>
+
+                    </div>
+
+
+                    <div class="stat-card orange">
+
+                        <div class="stat-top">
+                            <span>Pending</span>
+
+                            <div class="stat-icon">
+                                ◷
+                            </div>
+                        </div>
+
+                        <h2 id="pendingTasks">0</h2>
+
+                        <p>
+                            One step at a time
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PROGRESS -->
+
+                <section class="progress-card">
+
+                    <div class="progress-info">
+
+                        <div>
+
+                            <span>
+                                Today's Progress
+                            </span>
+
+                            <h3 id="progressMessage">
+                                Keep pushing forward 🚀
+                            </h3>
+
+                        </div>
+
+                        <strong id="progressText">
+                            0%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-track">
+
+                        <div id="progressFill"></div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- TASK AREA -->
+
+                <section class="tasks-section">
+
+                    <div class="section-heading">
+
+                        <div>
+                            <h2>My Tasks</h2>
+
+                            <p>
+                                Plan your day without overwhelming it.
+                            </p>
+                        </div>
+
+                        <button
+                            id="clearCompleted"
+                            class="clear-btn">
+                            Clear completed
+                        </button>
+
+                    </div>
+
+
+                    <!-- SMART ADD -->
+
+                    <div class="add-task">
+
+                        <input
+                            type="text"
+                            id="taskInput"
+                            placeholder="What do you need to accomplish?"
+                            autocomplete="off">
+
+
+                        <select id="taskPriority">
+
+                            <option value="normal">
+                                🌱 Normal
+                            </option>
+
+                            <option value="high">
+                                ⚡ High
+                            </option>
+
+                            <option value="urgent">
+                                🔥 Urgent
+                            </option>
+
+                            <option value="low">
+                                💤 Low
+                            </option>
+
+                        </select>
+
+
+                        <select id="taskCategory">
+
+                            <option value="study">
+                                📚 Study
+                            </option>
+
+                            <option value="work">
+                                💼 Work
+                            </option>
+
+                            <option value="personal">
+                                🏠 Personal
+                            </option>
+
+                            <option value="project">
+                                💡 Project
+                            </option>
+
+                            <option value="health">
+                                🏃 Health
+                            </option>
+
+                            <option value="other">
+                                ⭐ Other
+                            </option>
+
+                        </select>
+
+
+                        <select id="taskTiming">
+
+                            <option value="whole-day">
+                                🕐 Whole Day
+                            </option>
+
+                            <option value="15-min">
+                                ⏱️ 15 min
+                            </option>
+
+                            <option value="30-min">
+                                ⏱️ 30 min
+                            </option>
+
+                            <option value="1-hour">
+                                ⏱️ 1 hour
+                            </option>
+
+                            <option value="2-hours">
+                                ⏱️ 2 hours
+                            </option>
+
+                        </select>
+
+
+                        <button id="addTaskBtn">
+
+                            <span>+</span>
+                            Add Task
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- SEARCH -->
+
+                    <div class="search">
+
+                        <span>⌕</span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search your tasks...">
+
+                    </div>
+
+
+                    <!-- FILTERS -->
+
+                    <div class="filters">
+
+                        <button
+                            class="filter active"
+                            data-filter="all">
+                            All
+                        </button>
+
+                        <button
+                            class="filter"
+                            data-filter="active">
+                            Active
+                        </button>
+
+                        <button
+                            class="filter"
+                            data-filter="completed">
+                            Completed
+                        </button>
+
+                    </div>
+
+
+                    <!-- TASK LIST -->
+
+                    <ul id="taskList"></ul>
+
+
+                    <!-- EMPTY -->
+
+                    <div
+                        id="emptyState"
+                        class="empty-state">
+
+                        <div class="empty-icon">
+                            ✦
+                        </div>
+
+                        <h3>
+                            Nothing here yet
+                        </h3>
+
+                        <p>
+                            Add one small task and start your momentum.
+                        </p>
+
+                    </div>
+
+
+                    <!-- FOOTER -->
+
+                    <div class="task-footer">
+
+                        <span id="taskCount">
+                            0 tasks remaining
+                        </span>
+
+                        <span id="footerThought">
+                            Stay focused ✨
+                        </span>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- =================================================
+                 TASKS PAGE
+            ================================================== -->
+
+            <section
+                id="tasksPage"
+                class="page">
+
+                <div class="simple-page">
+
+                    <span class="page-icon">✓</span>
+
+                    <h1>My Tasks</h1>
+
+                    <p>
+                        Everything you've planned in one place.
+                    </p>
+
+                    <button
+                        class="page-action"
+                        data-page="dashboard">
+                        View Task Board →
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 IMPORTANT PAGE
+            ================================================== -->
+
+            <section
+                id="importantPage"
+                class="page">
+
+                <div class="simple-page">
+
+                    <span class="page-icon">★</span>
+
+                    <h1>Important</h1>
+
+                    <p>
+                        Your starred tasks deserve a little extra attention.
+                    </p>
+
+                    <div id="importantList" class="important-list"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ANALYTICS PAGE
+            ================================================== -->
+
+            <section
+                id="analyticsPage"
+                class="page">
+
+                <div class="simple-page">
+
+                    <span class="page-icon">◔</span>
+
+                    <h1>Analytics</h1>
+
+                    <p>
+                        A simple look at your productivity.
+                    </p>
+
+                    <div class="analytics-grid">
+
+                        <div class="analytics-box">
+                            <span>Total</span>
+                            <strong id="analyticsTotal">0</strong>
+                        </div>
+
+                        <div class="analytics-box">
+                            <span>Completed</span>
+                            <strong id="analyticsCompleted">0</strong>
+                        </div>
+
+                        <div class="analytics-box">
+                            <span>Pending</span>
+                            <strong id="analyticsPending">0</strong>
+                        </div>
+
+                        <div class="analytics-box">
+                            <span>Completion</span>
+                            <strong id="analyticsPercent">0%</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="analytics-thought">
+                        “Consistency beats intensity.”
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SETTINGS PAGE
+            ================================================== -->
+
+            <section
+                id="settingsPage"
+                class="page">
+
+                <div class="simple-page">
+
+                    <span class="page-icon">⚙</span>
+
+                    <h1>Settings</h1>
+
+                    <p>
+                        Make Taskly feel like your own space.
+                    </p>
+
+
+                    <div class="settings-list">
+
+                        <div class="setting-row">
+
+                            <div>
+                                <strong>Appearance</strong>
+                                <small>
+                                    Switch between light and dark mode.
+                                </small>
+                            </div>
+
+                            <button
+                                id="settingsThemeBtn"
+                                class="setting-btn">
+                                Change
+                            </button>
+
+                        </div>
+
+
+                        <div class="setting-row">
+
+                            <div>
+                                <strong>Profile</strong>
+                                <small>
+                                    Update your Taskly profile.
+                                </small>
+                            </div>
+
+                            <button
+                                id="settingsProfileBtn"
+                                class="setting-btn">
+                                Edit
+                            </button>
+
+                        </div>
+
+
+                        <div class="setting-row">
+
+                            <div>
+                                <strong>Clear completed tasks</strong>
+                                <small>
+                                    Remove finished tasks from your list.
+                                </small>
+                            </div>
+
+                            <button
+                                id="settingsClearBtn"
+                                class="setting-btn danger">
+                                Clear
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         PROFILE MODAL
+    ====================================================== -->
+
+    <div
+        id="profileModal"
+        class="modal-overlay">
+
+        <div class="modal">
+
+            <button
+                id="closeProfileModal"
+                class="modal-close">
+                ×
+            </button>
+
+            <div class="modal-icon">
+                👤
+            </div>
+
+            <h2>Your Profile</h2>
+
+            <p>
+                Make Taskly feel a little more like you.
+            </p>
+
+            <label>
+                Your name
+            </label>
+
+            <input
+                id="profileNameInput"
+                type="text"
+                placeholder="Enter your name">
+
+            <label>
+                Profile type
+            </label>
+
+            <select id="profileTypeInput">
+
+                <option value="Productivity User">
+                    Productivity User
+                </option>
+
+                <option value="Student">
+                    Student
+                </option>
+
+                <option value="Professional">
+                    Professional
+                </option>
+
+                <option value="Creator">
+                    Creator
+                </option>
+
+                <option value="Personal">
+                    Personal
+                </option>
+
+            </select>
+
+            <button
+                id="saveProfileBtn"
+                class="modal-save">
+                Save Profile
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ADD PROFILE MODAL
+    ====================================================== -->
+
+    <div
+        id="addProfileModal"
+        class="modal-overlay">
+
+        <div class="modal">
+
+            <button
+                id="closeAddProfileModal"
+                class="modal-close">
+                ×
+            </button>
+
+            <div class="modal-icon">
+                ＋
+            </div>
+
+            <h2>Add Profile</h2>
+
+            <p>
+                Create another workspace for a different side of your life.
+            </p>
+
+            <label>
+                Profile name
+            </label>
+
+            <input
+                id="newProfileName"
+                type="text"
+                placeholder="Example: College, Work, Personal">
+
+            <label>
+                Profile type
+            </label>
+
+            <select id="newProfileType">
+
+                <option value="Student">
+                    Student
+                </option>
+
+                <option value="Professional">
+                    Professional
+                </option>
+
+                <option value="Creator">
+                    Creator
+                </option>
+
+                <option value="Personal">
+                    Personal
+                </option>
+
+            </select>
+
+            <button
+                id="createProfileBtn"
+                class="modal-save">
+                Create Profile
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
